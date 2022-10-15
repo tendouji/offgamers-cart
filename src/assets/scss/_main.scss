@@ -40,3 +40,12 @@ a {
     opacity: 0.6;
   }
 }
+
+.error-message {
+  width: 100%;
+  padding: $gap-normal;
+  border: 1px solid $red;
+  color: $red;
+  text-align: center;
+  background: rgba($red, 0.2);
+}

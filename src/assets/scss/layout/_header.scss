@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .header {
   position: fixed;
   top: 0;
@@ -6,7 +8,7 @@
   height: $header-height;
   background-color: $white;
   border-bottom: 1px solid $light-grey-2;
-  z-index: 1;
+  z-index: map.get($z-index, "header");
 
   .wrapper {
     position: relative;
@@ -14,6 +16,10 @@
     justify-content: space-between;
     align-items: stretch;
     height: $header-height;
+  }
+
+  button {
+    background: transparent;
   }
 
   &__title {
@@ -47,7 +53,8 @@
     }
   }
 
-  &__cart-link {
+  &__search-button,
+  &__cart-button {
     @include center-aligned;
 
     position: relative;
@@ -55,11 +62,22 @@
     line-height: 1em;
     text-decoration: none;
     color: $black;
+    border-radius: 0;
 
     .material-symbols-outlined {
       font-size: 2rem;
     }
 
+    &.highlighted {
+      background: rgba($green, 0.2);
+    }
+  }
+
+  &__search-button {
+    margin-left: auto;
+  }
+
+  &__cart-button {
     &__counter-badge {
       position: absolute;
       top: $gap-xsmall;

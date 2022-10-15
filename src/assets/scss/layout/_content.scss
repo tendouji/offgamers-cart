@@ -1,4 +1,9 @@
 .content {
   padding-top: $header-height;
   margin: $gap-normal 0;
+  transition: padding-top $transition-time;
+
+  &.#{$display-search-classname} {
+    padding-top: $header-height + $search-panel-height + 1px;
+  }
 }

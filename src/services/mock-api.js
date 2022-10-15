@@ -4,6 +4,7 @@ class MockApi {
   static start() {
     createServer({
       routes() {
+        this.timing = 2000;
         this.get("/api/offgamers/catalogue", () => ({
           success: true,
           data: [

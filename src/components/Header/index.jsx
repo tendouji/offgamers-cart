@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
-import { useCartContext } from "../../context/cart";
+import React from "react";
+import { useCartContext } from "../../context/Cart";
+import { useSearchPanelContext } from "../../context/SearchPanel";
 import MiniCart from "../MiniCart";
 
 const Header = ({ globalStates }) => {
-  const headerRef = useRef(null);
   const { cartContent, showMiniCart, showHideMiniCart } = useCartContext();
+  const { showSearchPanel, showHideSearchPanel } = useSearchPanelContext();
 
   const getTotalCartItems = () => {
     return cartContent.reduce((a, b) => a + (b["quantity"] || 0), 0);
@@ -12,11 +13,18 @@ const Header = ({ globalStates }) => {
 
   const onShowHideCart = (e) => {
     e.preventDefault();
+    showHideSearchPanel(false);
     showHideMiniCart(!showMiniCart);
   };
 
+  const onShowHideSearchPanel = (e) => {
+    e.preventDefault();
+    showHideMiniCart(false);
+    showHideSearchPanel(!showSearchPanel);
+  };
+
   return (
-    <header className="header" ref={headerRef}>
+    <header className="header">
       <div className="wrapper">
         <div className="header__title">
           <div className="header__title__logo">
@@ -24,14 +32,31 @@ const Header = ({ globalStates }) => {
           </div>
           <h1>OffGamers Catalogue</h1>
         </div>
-        <a href="#cart" className="header__cart-link" onClick={onShowHideCart}>
+        <button
+          type="button"
+          className={[
+            "header__search-button",
+            !!showSearchPanel ? " highlighted" : "",
+          ].join("")}
+          onClick={onShowHideSearchPanel}
+        >
+          <span className="material-symbols-outlined">search</span>
+        </button>
+        <button
+          type="button"
+          className={[
+            "header__cart-button",
+            !!showMiniCart ? " highlighted" : "",
+          ].join("")}
+          onClick={onShowHideCart}
+        >
           <span className="material-symbols-outlined">shopping_cart</span>
           {getTotalCartItems() > 0 && (
-            <span className="header__cart-link__counter-badge">
+            <span className="header__cart-button__counter-badge">
               {getTotalCartItems() || 0}
             </span>
           )}
-        </a>
+        </button>
         {showMiniCart && <MiniCart></MiniCart>}
       </div>
     </header>

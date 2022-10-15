@@ -1,0 +1,50 @@
+@use "sass:map";
+
+.search-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: $search-panel-height;
+  background-color: $white;
+  border-bottom: 1px solid $light-grey-2;
+  z-index: map.get($z-index, "search-panel");
+  transition: top $transition-time;
+
+  @at-root {
+    .#{$display-search-classname} & {
+      top: $header-height + 1px;
+    }
+  }
+
+  .wrapper {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: $header-height;
+  }
+
+  input[type="text"] {
+    width: calc(100% - #{$search-panel-height} - #{$gap-normal});
+    padding: $gap-small $gap-normal;
+    border-radius: $border-radius;
+    border: 1px solid $light-grey-2;
+
+    &:hover,
+    &:focus,
+    &:active {
+      outline-color: $green;
+    }
+  }
+
+  button {
+    @include center-aligned;
+
+    height: calc(#{$search-panel-height} - #{$gap-normal});
+    width: calc(#{$search-panel-height} - #{$gap-normal});
+    margin-left: $gap-normal;
+  }
+}

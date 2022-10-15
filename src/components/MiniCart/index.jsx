@@ -1,5 +1,5 @@
 import React from "react";
-import { useCartContext } from "../../context/cart";
+import { useCartContext } from "../../context/Cart";
 
 const MiniCart = () => {
   const { cartContent, addItem, minusItem, removeItem } = useCartContext();

@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useState } from "react";
-import { useCatalogueContext } from "../catalogue";
+import { useCatalogueContext } from "../Catalogue";
 
 const CartContext = createContext();
 CartContext.displayName = "CartContext";

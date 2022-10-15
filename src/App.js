@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { CatalogueContextProvider } from "./context/catalogue";
-import { CartContextProvider } from "./context/cart";
+import { CatalogueContextProvider } from "./context/Catalogue";
+import { CartContextProvider } from "./context/Cart";
+import { SearchPanelContextProvider } from "./context/SearchPanel";
 import Header from "./components/Header";
 import Content from "./components/Content";
+import Preloader from "./components/Preloader";
 
 const App = () => {
   const [catalogueData, setCatalogueData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const mapCatalogueData = (catalogueList) =>
     catalogueList.map((catalogueItem, index) => ({
@@ -26,28 +29,30 @@ const App = () => {
           const { data } = response;
           if (data && data.success) {
             const { data: catalogueList } = data;
-
             setCatalogueData(mapCatalogueData(catalogueList));
           }
+          setIsLoading(false);
         })
-        .catch((error) => {
-          // FIXME add error handling
-          console.log(error);
+        .catch(() => {
+          setIsLoading(false);
         });
     };
 
     if (!catalogueData.length) {
       getData();
     }
-  }, []);
+  }, [catalogueData.length]);
 
   return (
     <CatalogueContextProvider catalogueData={catalogueData}>
       <CartContextProvider>
-        <div className="cart-site">
-          <Header></Header>
-          <Content></Content>
-        </div>
+        <SearchPanelContextProvider>
+          <div className="cart-site">
+            <Header></Header>
+            <Content isLoading={isLoading}></Content>
+          </div>
+          {!!isLoading && <Preloader></Preloader>}
+        </SearchPanelContextProvider>
       </CartContextProvider>
     </CatalogueContextProvider>
   );

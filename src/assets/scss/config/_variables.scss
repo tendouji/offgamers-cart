@@ -7,6 +7,7 @@ $grey: #f5f6f8;
 $grey-2: #dbe0e8;
 $dark-grey: #61636e;
 $green: #00d182;
+$red: #d62323;
 
 // fonts
 $font-xxsmall: 0.625rem; // 10px
@@ -26,7 +27,14 @@ $screen-medium: 1024px;
 $screen-large: 1280px;
 $border-radius: 8px;
 $header-height: 50px;
+$search-panel-height: 50px;
 
 // others
 $transition-time: 300ms;
 $box-shadow: 0 3px 4px rgba($black, 0.2);
+$display-search-classname: "display-search";
+$z-index: (
+  "search-panel": 1,
+  "header": 2,
+  "preloader": 3,
+);
