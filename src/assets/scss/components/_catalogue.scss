@@ -1,0 +1,119 @@
+$catalogue-item-name: catalogue__item;
+
+.catalogue {
+  display: flex;
+  flex-wrap: wrap;
+
+  .#{$catalogue-item-name} {
+    display: flex;
+    flex-direction: column;
+    width: calc((100% - #{3 * $gap-normal}) / 4);
+    margin-right: $gap-normal;
+    margin-bottom: $gap-normal;
+    text-decoration: none;
+    text-align: center;
+    border-radius: $border-radius;
+    border: 1px solid $light-grey-2;
+    background-color: $white;
+    box-shadow: 0 3px 3px rgba($grey, 0.4);
+    box-sizing: border-box;
+    transition: all $transition-time;
+
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+
+    @include media-breakpoint-down($screen-medium) {
+      width: calc((100% - #{2 * $gap-normal}) / 3);
+
+      &:nth-child(4n) {
+        margin-right: $gap-normal;
+      }
+
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+
+    @include media-breakpoint-down($screen-small) {
+      width: calc((100% - #{$gap-normal}) / 2);
+
+      &:nth-child(3n),
+      &:nth-child(4n) {
+        margin-right: $gap-normal;
+      }
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+    }
+
+    @include media-breakpoint-down($screen-xsmall) {
+      width: 100%;
+      margin-right: 0 !important;
+    }
+
+    &__info {
+      padding: $gap-normal;
+
+      .#{$catalogue-item-name}__image {
+        width: 100%;
+        max-width: 240px;
+        margin: 0 auto $gap-normal;
+
+        .#{$catalogue-item-name}__image__wrapper {
+          position: relative;
+          width: 100%;
+          height: 0;
+          padding-bottom: 125%;
+        }
+
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: $border-radius;
+        }
+      }
+
+      .#{$catalogue-item-name}__title {
+        margin-bottom: $gap-xsmall;
+        color: $black;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .#{$catalogue-item-name}__price {
+        &__discounted-price {
+          color: $green;
+          font-size: $font-large;
+        }
+
+        &__selling-price {
+          color: $dark-grey;
+          font-size: $font-xsmall;
+          text-decoration: line-through;
+        }
+      }
+    }
+
+    &__action {
+      padding: $gap-normal;
+      margin-top: auto;
+      text-align: center;
+      border-top: 1px solid $light-grey-2;
+      background-color: $light-grey;
+    }
+
+    &--out-of-stock {
+      filter: grayscale(100%);
+      pointer-events: none;
+      cursor: auto;
+    }
+  }
+}
