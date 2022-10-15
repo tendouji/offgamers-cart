@@ -5,6 +5,7 @@
 
 # production
 /build
+/src/assets/css
 
 # misc
 .DS_Store
