@@ -80,11 +80,12 @@
   &__cart-button {
     &__counter-badge {
       position: absolute;
-      top: $gap-xsmall;
+      top: 7px;
       left: calc(50% + 4px);
       display: block;
       padding: 0 $gap-xsmall;
-      font-size: $font-xxsmall;
+      font-size: $font-xsmall;
+      font-weight: bold;
       color: $white;
       background-color: $green;
       border-radius: $border-radius;
