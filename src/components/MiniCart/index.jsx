@@ -22,7 +22,7 @@ const MiniCart = () => {
   return (
     <div className="mini-cart">
       <ul>
-        {cartContent &&
+        {cartContent && cartContent.length ? (
           cartContent.map((item) => (
             <li key={item.id} className="mini-cart__item">
               <div className="mini-cart__item__title">
@@ -56,7 +56,15 @@ const MiniCart = () => {
                 </button>
               </div>
             </li>
-          ))}
+          ))
+        ) : (
+          <div className="mini-cart__message">
+            <span className="material-symbols-outlined">
+              production_quantity_limits
+            </span>
+            <span>No items added</span>
+          </div>
+        )}
       </ul>
     </div>
   );

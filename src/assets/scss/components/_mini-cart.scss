@@ -51,4 +51,20 @@ $mini-cart-item-buttons-width: 80px;
       }
     }
   }
+
+  &__message {
+    padding: $gap-normal;
+    text-align: center;
+
+    .material-symbols-outlined {
+      color: $green;
+      font-size: 2rem;
+    }
+
+    span {
+      display: block;
+      margin-top: $gap-small;
+      font-size: $font-small;
+    }
+  }
 }
