@@ -1,12 +1,18 @@
 import React, { useRef } from "react";
 import { useCartContext } from "../../context/cart";
+import MiniCart from "../MiniCart";
 
 const Header = ({ globalStates }) => {
   const headerRef = useRef(null);
-  const { cartContent } = useCartContext();
+  const { cartContent, showMiniCart, showHideMiniCart } = useCartContext();
 
   const getTotalCartItems = () => {
     return cartContent.reduce((a, b) => a + (b["quantity"] || 0), 0);
+  };
+
+  const onShowHideCart = (e) => {
+    e.preventDefault();
+    showHideMiniCart(!showMiniCart);
   };
 
   return (
@@ -18,7 +24,7 @@ const Header = ({ globalStates }) => {
           </div>
           <h1>OffGamers Catalogue</h1>
         </div>
-        <a href="#cart" className="header__cart-link">
+        <a href="#cart" className="header__cart-link" onClick={onShowHideCart}>
           <span className="material-symbols-outlined">shopping_cart</span>
           {getTotalCartItems() > 0 && (
             <span className="header__cart-link__counter-badge">
@@ -26,6 +32,7 @@ const Header = ({ globalStates }) => {
             </span>
           )}
         </a>
+        {showMiniCart && <MiniCart></MiniCart>}
       </div>
     </header>
   );

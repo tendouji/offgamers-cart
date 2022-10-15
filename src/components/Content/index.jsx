@@ -1,11 +1,10 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useCartContext } from "../../context/cart";
 import { useCatalogueContext } from "../../context/catalogue";
 
 const Content = () => {
   const { catalogueData } = useCatalogueContext();
   const { addItem } = useCartContext();
-  const contentRef = useRef(null);
 
   const onButtonClick = (e) => {
     e.preventDefault();
@@ -14,7 +13,7 @@ const Content = () => {
   };
 
   return (
-    <main className="content" ref={contentRef}>
+    <main className="content">
       <div className="catalogue wrapper">
         {catalogueData &&
           catalogueData.map((item) => (

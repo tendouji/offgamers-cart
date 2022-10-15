@@ -15,7 +15,7 @@ $catalogue-item-name: catalogue__item;
     border-radius: $border-radius;
     border: 1px solid $light-grey-2;
     background-color: $white;
-    box-shadow: 0 3px 3px rgba($grey, 0.4);
+    box-shadow: $box-shadow;
     box-sizing: border-box;
     transition: all $transition-time;
 
