@@ -88,6 +88,7 @@ $catalogue-item-name: catalogue__item;
       }
 
       .#{$catalogue-item-name}__title {
+        height: 2.8rem;
         margin-bottom: $gap-xsmall;
         color: $black;
         display: -webkit-box;
