@@ -1,6 +1,7 @@
 {
   "name": "cart-test",
   "version": "0.1.0",
+  "homepage": "https://tendouji.github.io/offgamers-cart",
   "private": true,
   "dependencies": {
     "axios": "^1.1.2",
@@ -13,6 +14,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "gh-pages": "^4.0.0",
     "laravel-mix": "^6.0.49",
     "miragejs": "^0.1.45",
     "sass": "^1.55.0"
@@ -23,6 +25,9 @@
     "react:start": "PORT=3330 react-scripts start",
     "react:build": "react-scripts build",
     "start": "npm run mix:build && npm run react:start",
+    "build": "npm run mix:build && npm run react:build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test"
   },
   "eslintConfig": {
