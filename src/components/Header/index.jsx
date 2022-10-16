@@ -5,7 +5,7 @@ import MiniCart from "../MiniCart";
 
 const Header = ({ globalStates }) => {
   const { cartContent, showMiniCart, showHideMiniCart } = useCartContext();
-  const { showSearchPanel, showHideSearchPanel } = useSearchPanelContext();
+  const { showSearchPanel, showHideSearchPanel, searchInputRef } = useSearchPanelContext();
 
   const getTotalCartItems = () => {
     return cartContent.reduce((a, b) => a + (b["quantity"] || 0), 0);
@@ -21,6 +21,9 @@ const Header = ({ globalStates }) => {
     e.preventDefault();
     showHideMiniCart(false);
     showHideSearchPanel(!showSearchPanel);
+    if (!showSearchPanel && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
   };
 
   return (
@@ -34,27 +37,19 @@ const Header = ({ globalStates }) => {
         </div>
         <button
           type="button"
-          className={[
-            "header__search-button",
-            !!showSearchPanel ? " highlighted" : "",
-          ].join("")}
+          className={["header__search-button", !!showSearchPanel ? " highlighted" : ""].join("")}
           onClick={onShowHideSearchPanel}
         >
           <span className="material-symbols-outlined">search</span>
         </button>
         <button
           type="button"
-          className={[
-            "header__cart-button",
-            !!showMiniCart ? " highlighted" : "",
-          ].join("")}
+          className={["header__cart-button", !!showMiniCart ? " highlighted" : ""].join("")}
           onClick={onShowHideCart}
         >
           <span className="material-symbols-outlined">shopping_cart</span>
           {getTotalCartItems() > 0 && (
-            <span className="header__cart-button__counter-badge">
-              {getTotalCartItems() || 0}
-            </span>
+            <span className="header__cart-button__counter-badge">{getTotalCartItems() || 0}</span>
           )}
         </button>
         {showMiniCart && <MiniCart></MiniCart>}

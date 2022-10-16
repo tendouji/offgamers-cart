@@ -1,9 +1,10 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, createRef, useContext, useState } from "react";
 
 const SearchPanelContext = createContext();
 SearchPanelContext.displayName = "SearchPanelContext";
 
 const useSearchPanelContext = () => useContext(SearchPanelContext);
+const searchInputRef = createRef();
 
 const searchPanelInitialState = {
   searchKey: "",
@@ -12,9 +13,7 @@ const searchPanelInitialState = {
 
 const SearchPanelContextProvider = ({ children }) => {
   const [searchKey, setSearchKey] = useState(searchPanelInitialState.searchKey);
-  const [showSearchPanel, showHideSearchPanel] = useState(
-    searchPanelInitialState.showSearchPanel
-  );
+  const [showSearchPanel, showHideSearchPanel] = useState(searchPanelInitialState.showSearchPanel);
 
   return (
     <SearchPanelContext.Provider
@@ -23,6 +22,7 @@ const SearchPanelContextProvider = ({ children }) => {
         setSearchKey,
         showSearchPanel,
         showHideSearchPanel,
+        searchInputRef,
       }}
     >
       {children}
@@ -30,8 +30,4 @@ const SearchPanelContextProvider = ({ children }) => {
   );
 };
 
-export {
-  SearchPanelContext,
-  useSearchPanelContext,
-  SearchPanelContextProvider,
-};
+export { SearchPanelContext, useSearchPanelContext, SearchPanelContextProvider };

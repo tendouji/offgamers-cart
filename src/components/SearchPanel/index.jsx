@@ -3,7 +3,7 @@ import { useSearchPanelContext } from "../../context/SearchPanel";
 
 const SearchPanel = () => {
   const [currentSearchKey, setCurrentSearchKey] = useState("");
-  const { setSearchKey } = useSearchPanelContext();
+  const { setSearchKey, searchInputRef } = useSearchPanelContext();
 
   const onSearchChange = (e) => {
     setCurrentSearchKey(e.currentTarget.value);
@@ -30,6 +30,7 @@ const SearchPanel = () => {
     <div className="search-panel">
       <div className="wrapper">
         <input
+          ref={searchInputRef}
           type="text"
           placeholder="Search product"
           value={currentSearchKey}
