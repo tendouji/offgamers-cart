@@ -45,6 +45,7 @@
 
     height: calc(#{$search-panel-height} - #{$gap-normal});
     width: calc(#{$search-panel-height} - #{$gap-normal});
+    padding: 0;
     margin-left: $gap-normal;
   }
 }
