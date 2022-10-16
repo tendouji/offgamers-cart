@@ -1,4 +1,5 @@
 $mini-cart-item-buttons-width: 80px;
+$mini-cart-action-height: 60px;
 
 .mini-cart {
   position: absolute;
@@ -13,12 +14,13 @@ $mini-cart-item-buttons-width: 80px;
   background-color: $white;
   box-shadow: $box-shadow;
   box-sizing: border-box;
-  overflow-y: auto;
 
   ul {
+    height: calc(100% - #{$mini-cart-action-height});
     padding: 0;
     margin: 0;
     list-style: none;
+    overflow-y: auto;
   }
 
   &__item {
@@ -50,6 +52,19 @@ $mini-cart-item-buttons-width: 80px;
         font-size: 1rem;
       }
     }
+  }
+
+  &__action {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: $mini-cart-action-height;
+    padding: $gap-small;
+    text-align: center;
+    border-top: 1px solid $light-grey-2;
+    box-sizing: border-box;
+    background-color: $light-grey;
   }
 
   &__message {

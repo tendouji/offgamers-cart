@@ -18,10 +18,6 @@
     height: $header-height;
   }
 
-  button {
-    background: transparent;
-  }
-
   &__title {
     display: flex;
     align-items: center;
@@ -63,6 +59,7 @@
     text-decoration: none;
     color: $black;
     border-radius: 0;
+    background: transparent;
 
     .material-symbols-outlined {
       font-size: 2rem;
